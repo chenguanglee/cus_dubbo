@@ -33,9 +33,9 @@ public class HttpClient {
             while ((str = bufferedReader.readLine()) != null) {
                 stringBuffer.append(str);
             }
-            Class<T> returnType = invocation.getReturnType();
+            Class returnType = invocation.getReturnType();
             String jsonStr = stringBuffer.toString();
-            return JSONObject.parseObject(jsonStr, returnType);
+            return (T) JSONObject.parseObject(jsonStr, returnType);
         } catch (Exception e) {
             e.printStackTrace();
         }

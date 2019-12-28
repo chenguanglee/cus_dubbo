@@ -11,12 +11,12 @@ import java.io.Serializable;
  */
 @Data
 @AllArgsConstructor
-public class Invocation<T> implements Serializable {
+public class Invocation implements Serializable {
 
     private String interfaceName;
     private String methodName;
     private Class[] paramTypes;
     private Object[] params;
-    private Class<T> returnType;
+    private Class returnType;
 
 }
