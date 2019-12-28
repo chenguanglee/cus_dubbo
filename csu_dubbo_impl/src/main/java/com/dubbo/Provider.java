@@ -1,11 +1,9 @@
 package com.dubbo;
 
-
 import com.dubbo.impl.HelloServiceImpl;
 import com.dubbo.protocol.framework.Protocol;
 import com.dubbo.protocol.framework.ProtocolFactory;
 import com.dubbo.protocol.framework.URL;
-import com.dubbo.protocol.http.HttpProtocol;
 import com.dubbo.protocol.register.LocalRegister;
 import com.dubbo.protocol.register.RemoteMapRegister;
 import com.dubbo.service.HelloService;
@@ -19,7 +17,6 @@ public class Provider {
     public static void main(String[] args) {
         //1.本地注册
         //{服务名: 实现类}
-
         LocalRegister.regist(HelloService.class.getName(), HelloServiceImpl.class);
 
         //2.远程注册

@@ -4,6 +4,7 @@ package com.dubbo.protocol.http;
 import com.dubbo.protocol.framework.Invocation;
 import com.dubbo.protocol.framework.Protocol;
 import com.dubbo.protocol.framework.URL;
+import com.dubbo.protocol.register.RemoteMapRegister;
 
 /**
  * @author chenguangli
@@ -17,7 +18,7 @@ public class HttpProtocol implements Protocol {
     }
 
     @Override
-    public String send(URL url, Invocation invocation) {
+    public <T> T send(URL url, Invocation invocation) {
         return new HttpClient().send(url.getHostName(), url.getPort(), invocation);
     }
 }

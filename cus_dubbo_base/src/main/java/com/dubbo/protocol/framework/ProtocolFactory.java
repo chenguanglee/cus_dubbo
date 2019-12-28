@@ -2,6 +2,10 @@ package com.dubbo.protocol.framework;
 
 
 
+
+import com.dubbo.protocol.http.HttpProtocol;
+import com.dubbo.protocol.netty.NettyProtocol;
+
 import java.util.Iterator;
 import java.util.ServiceLoader;
 
@@ -23,7 +27,7 @@ public class ProtocolFactory {
 
         //工厂模式
 //        String name = System.getProperty("protocolName");
-//        if (StringUtils.isEmpty(name)) {
+//        if (name == null || name.length() == 0) {
 //            name = "http";
 //        }
 //        Protocol protocol;

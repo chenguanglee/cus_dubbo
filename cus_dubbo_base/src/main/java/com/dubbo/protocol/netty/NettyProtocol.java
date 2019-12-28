@@ -16,7 +16,8 @@ public class NettyProtocol implements Protocol {
     }
 
     @Override
-    public String send(URL url, Invocation invocation) {
+    public <T> T send(URL url, Invocation invocation) {
         return null;
     }
+
 }

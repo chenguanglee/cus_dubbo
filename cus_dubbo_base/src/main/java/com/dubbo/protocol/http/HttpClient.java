@@ -1,6 +1,7 @@
 package com.dubbo.protocol.http;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.dubbo.protocol.framework.Invocation;
 
 import java.io.*;
@@ -13,16 +14,14 @@ import java.net.URL;
  */
 public class HttpClient {
 
-    public String send(String hostName, int port, Invocation invocation) {
+    public <T> T send(String hostName, int port, Invocation invocation) {
         try {
             URL url = new URL("http", hostName, port, "/");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
-
             OutputStream outputStream = httpURLConnection.getOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(outputStream);
-
             oos.writeObject(invocation);
             oos.flush();
             oos.close();
@@ -34,8 +33,9 @@ public class HttpClient {
             while ((str = bufferedReader.readLine()) != null) {
                 stringBuffer.append(str);
             }
-
-            return stringBuffer.toString();
+            Class<T> returnType = invocation.getReturnType();
+            String jsonStr = stringBuffer.toString();
+            return JSONObject.parseObject(jsonStr, returnType);
         } catch (Exception e) {
             e.printStackTrace();
         }

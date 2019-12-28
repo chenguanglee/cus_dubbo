@@ -1,7 +1,7 @@
 package com.dubbo.protocol.http;
 
 
-
+import com.alibaba.fastjson.JSONObject;
 import com.dubbo.protocol.framework.Invocation;
 import com.dubbo.protocol.register.LocalRegister;
 
@@ -23,18 +23,14 @@ public class HttpServerHandler {
         try {
             InputStream inputStream = req.getInputStream();
             ObjectInputStream ois = new ObjectInputStream(inputStream);
-
             Invocation invocation = (Invocation) ois.readObject();
 
             Class implClass = LocalRegister.get(invocation.getInterfaceName());
-
             Method method = implClass.getMethod(invocation.getMethodName(), invocation.getParamTypes());
-
-            String result = (String) method.invoke(implClass.newInstance(), invocation.getParams());
-
+            Object result = method.invoke(implClass.newInstance(), invocation.getParams());
+            String resultStr = JSONObject.toJSONString(result);
             OutputStream outputStream = resp.getOutputStream();
-
-            outputStream.write(result.getBytes());
+            outputStream.write(resultStr.getBytes());
 
         } catch (Exception e) {
 

@@ -32,7 +32,7 @@ public class RemoteMapRegister {
 //        List<URL> list = registerMap.get(interfaceName);
         List<URL> list = getUrlFromRedis(interfaceName);
         Random random = new Random(1995);
-        int n = random.nextInt(list.size());
+        int n = random.nextInt(list.size());// [0,list.size())
         return list.get(n);
     }
 

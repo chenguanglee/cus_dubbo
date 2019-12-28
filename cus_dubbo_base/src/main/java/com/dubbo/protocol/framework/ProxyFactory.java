@@ -17,11 +17,10 @@ public class ProxyFactory {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 Protocol protocol = ProtocolFactory.getProtocol();
-                Invocation invocation = new Invocation(clazz.getName(), method.getName(), method.getParameterTypes(), args);
-
+                Invocation invocation = new Invocation(clazz.getName(), method.getName(), method.getParameterTypes(), args, method.getReturnType());
+                //从注册中心获取调用一个远端服务的地址信息
                 URL url = RemoteMapRegister.getUrlRandom(clazz.getName());
-                String result = protocol.send(url, invocation);
-                return result;
+                return protocol.send(url, invocation);
             }
         });
     }
