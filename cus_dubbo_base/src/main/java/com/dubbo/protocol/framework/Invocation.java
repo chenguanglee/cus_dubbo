@@ -13,10 +13,29 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Invocation implements Serializable {
 
+    /**
+     * 接口名称
+     */
     private String interfaceName;
+
+    /**
+     * 方法名称
+     */
     private String methodName;
+
+    /**
+     * 参数类型
+     */
     private Class[] paramTypes;
+
+    /**
+     * 参数列表
+     */
     private Object[] params;
+
+    /**
+     * 方法返回类型
+     */
     private Class returnType;
 
 }

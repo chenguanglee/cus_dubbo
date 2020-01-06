@@ -32,6 +32,13 @@
             <version>1.2.51</version>
         </dependency>
 
+        <!-- guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.1-jre</version>
+        </dependency>
+
         <!-- tomcat -->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
